@@ -517,8 +517,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 50005) return false;
-    } else if (addr.GetPort() == 50005)
+        if (addr.GetPort() != 50015) return false;
+    } else if (addr.GetPort() == 50015)
         return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts

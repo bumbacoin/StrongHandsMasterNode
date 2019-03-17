@@ -18,7 +18,7 @@ const std::string CLIENT_NAME("shmn core");
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX ""
+#define CLIENT_VERSION_SUFFIX "Testnet"
 
 
 /**

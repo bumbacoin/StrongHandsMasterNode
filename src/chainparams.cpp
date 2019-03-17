@@ -92,29 +92,29 @@ public:
     CMainParams()
     {
         networkID = CBaseChainParams::MAIN;
-        strNetworkID = "main";
+        strNetworkID = "test";
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x24;
-        pchMessageStart[1] = 0x24;
-        pchMessageStart[2] = 0xa7;
-        pchMessageStart[3] = 0xf1;
+        pchMessageStart[0] = 0x45;
+        pchMessageStart[1] = 0x76;
+        pchMessageStart[2] = 0x65;
+        pchMessageStart[3] = 0xba;
         vAlertPubKey = ParseHex("");
-        nDefaultPort = 50005;
+        nDefaultPort = 50015;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // shmn starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
+        nEnforceBlockUpgradeMajority = 51;
+        nRejectBlockOutdatedMajority = 75;
+        nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         nTargetTimespan = 42 * 3 * 60; // shmn: 126 minutes
         nTargetSpacing = 3 * 60;  // shmn: 3 minutes
-        nLastPOWBlock = 3650;
-        nMaturity = 60;
+        nLastPOWBlock = 3600;
+        nMaturity = 15;
         nMasternodeCountDrift = 20;
         nMasternodeCollateralLimit = 1000;
         nModifierUpdateBlock = 1;
@@ -147,17 +147,8 @@ public:
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x77).convert_to_container<std::vector<unsigned char> >();
 
-	vSeeds.push_back(CDNSSeedData("45.32.156.117","45.32.156.117"));
-	vSeeds.push_back(CDNSSeedData("80.240.19.191","80.240.19.191"));
-	vSeeds.push_back(CDNSSeedData("80.240.25.159","80.240.25.159"));
-	vSeeds.push_back(CDNSSeedData("95.179.162.22","95.179.162.22"));
-	vSeeds.push_back(CDNSSeedData("95.179.166.194","95.179.166.194"));
-	vSeeds.push_back(CDNSSeedData("45.77.66.101","45.77.66.101"));
-	vSeeds.push_back(CDNSSeedData("104.234.220.135","104.234.220.135"));
-	vSeeds.push_back(CDNSSeedData("167.160.36.13","167.160.36.13"));
-	vSeeds.push_back(CDNSSeedData("104.200.67.161","104.200.67.161"));
-	vSeeds.push_back(CDNSSeedData("84.200.210.88","84.200.210.88"));
-	vSeeds.push_back(CDNSSeedData("185.243.115.79","185.243.115.79"));
+//	vSeeds.push_back(CDNSSeedData("45.32.156.117","45.32.156.117"));
+
 
 	convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
@@ -172,7 +163,7 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "04adb0de8ee6900d0c06e6093408269bcf58805e293a21f8a28bd0273e2135b2ffb35298d4d25b827d745e8714cdbfb294e1c721ae09176d63bafb418fbacb2365";
+        strSporkKey = "03f801010040ebdf45f577a3900cbeb8d35c35a89407857c652a13f1b1c925a341";
         strObfuscationPoolDummyAddress = "MAdDEoKaSFfFBMnQSyQySg2tXMnyYgx5TS";
         nStartMasternodePayments = 1524163745; //11/10/2017 @ 12:00am (UTC)
     }

@@ -209,10 +209,10 @@ QT_TRANSLATE_NOOP("shmn-core", ""
 QT_TRANSLATE_NOOP("shmn-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("shmn-core", "(50005 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("shmn-core", "(50015 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("shmn-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("shmn-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("shmn-core", "(must be 50005 for mainnet)"),
+QT_TRANSLATE_NOOP("shmn-core", "(must be 50015 for mainnet)"),
 QT_TRANSLATE_NOOP("shmn-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("shmn-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("shmn-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
