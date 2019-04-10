@@ -1611,20 +1611,28 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-// developer fee . based on 5% pow block paid weekly 
-// 32850 Coins every 10080 blocks, starting after 3 months
-// 1440 blocks / day, 10080 blocks / week
+// developer fee . starts after block 142000
+// first year based on 5% pow block paid weekly, 2nd year 3%, after 1%.
+// x Coins every x blocks,
+// 480 blocks / day, 3360 blocks / week
+// this Test network uses different values
 bool fDevFee(int nHeight)
 	{
-	if (nHeight <= 149999) return false;
-	return (nHeight % 1680 < 1);}
+	if (nHeight <= Params().RewardUpgradeBlock()) return false;
+	return (nHeight % 5 < 1);}
 
 int64_t GetDevFee(int nHeight)
 {
     int64_t nDevFee = 0 * COIN;
 
-    if ((nHeight > 149999) && (nHeight % 1680 < 1)) {
-        nDevFee = 777 * COIN;
+    if ((nHeight > Params().RewardUpgradeBlock()) && (nHeight % 1680 < 1)) {
+        if (nHeight <= 4865) {
+        	nDevFee = 840 * COIN;
+        } else if (nHeight > 4865 && nHeight <= 4880) {
+        	nDevFee = 504 * COIN;        
+        } else if (nHeight > 4880) {
+        	nDevFee = 168 * COIN;
+        }
     }	
     return nDevFee;
 }
@@ -5384,12 +5392,25 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
 
-    // SPORK_15 is used for 70812.
+    // SPORK_14 is used for protocol 70812, upgrade reward structure to include Dev Fund payments
 
-    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT))
+    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT)) {
+        if (chainActive.Tip()->nHeight >= Params().RewardUpgradeBlock())
+            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+    }
+
+    return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+
+
+
+    // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their
+    // own ModifierUpgradeBlock()
+
+/*    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+    */
 }
 
 // requires LOCK(cs_vRecvMsg)
